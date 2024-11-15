@@ -13,6 +13,11 @@ spec:
       name: kube-prometheus-stack
     sources:
       direct: true
+  - origin:
+      kind: Warehouse
+      name: grafana
+    sources:
+      direct: true
   promotionTemplate:
     spec:
       steps:
@@ -99,6 +104,12 @@ spec:
   - origin:
       kind: Warehouse
       name: kube-prometheus-stack
+    sources:
+      stages:
+        - dev
+  - origin:
+      kind: Warehouse
+      name: grafana
     sources:
       stages:
         - dev

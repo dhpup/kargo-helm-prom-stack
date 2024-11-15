@@ -15,3 +15,21 @@ spec:
         repoURL: https://prometheus-community.github.io/helm-charts
         semverConstraint: ">=62.0.0"
 
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Warehouse
+metadata:
+  name: grafana
+  namespace: kargo-helm-prom-stack
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  freightCreationPolicy: Automatic
+  interval: 5m0s
+  subscriptions:
+    - image:
+        discoveryLimit: 20
+        repoURL: docker.io/grafana/grafana
+        imageSelectionStrategy: SemVer
+        semverConstraint: ">=11.2.0"
+        strictSemvers: true
