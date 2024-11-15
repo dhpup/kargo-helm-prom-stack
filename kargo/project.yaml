@@ -4,3 +4,7 @@ metadata:
   name: kargo-helm-prom-stack
   annotations:
     argocd.argoproj.io/sync-wave: "1"
+spec:
+  promotionPolicies:
+  - stage: dev
+    autoPromotionEnabled: false
