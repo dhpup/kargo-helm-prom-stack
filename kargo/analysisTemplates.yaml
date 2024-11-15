@@ -6,7 +6,8 @@ metadata:
 spec:
   metrics:
   - name: is-up-prometheus
-    interval: 1m
+    interval: 30s
+    count: 4
     successCondition: result[0] >= 1
     failureLimit: 3
     provider:
