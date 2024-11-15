@@ -9,5 +9,7 @@ spec:
   promotionPolicies:
   - stage: dev
     autoPromotionEnabled: false
+  - stage: test
+    autoPromotionEnabled: false
   - stage: prod
     autoPromotionEnabled: false

@@ -1,0 +1,39 @@
+kube-prometheus-stack:
+  alertmanager:
+    alertmanagerSpec:
+      image:
+        tag: v0.25.0
+    ingress:
+      enabled: true
+      hosts:
+        - alertmanager-test.localhost
+      paths:
+        - /
+  grafana:
+    image:
+      tag: 11.2.2
+    adminPassword: admin
+    sidecar:
+      dashboards:
+        enabled: true
+        labelValue: ""
+    ingress:
+      enabled: true
+      hosts:
+        - grafana-test.localhost
+      paths:
+        - /
+  prometheus:
+    prometheusSpec:
+      image:
+        tag: v2.55.0
+    ingress:
+      enabled: true
+      hosts:
+        - prometheus-test.localhost
+      paths:
+        - /
+  prometheus-node-exporter:
+    prometheus:
+      monitor:
+        interval: 15s
