@@ -1,11 +1,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AnalysisTemplate
 metadata:
-  name: is-up-prometheus
+  name: prometheus-is-up
   namespace: kargo-helm-prom-stack
 spec:
   metrics:
-  - name: is-up-prometheus
+  - name: prometheus-is-up
     interval: 30s
     count: 4
     successCondition: result[0] >= 1
@@ -16,4 +16,4 @@ spec:
         insecure: true
         timeout: 40
         query: |
-          sum(up{pod=~'prometheus-kube-prometheus-stack-prometheus-.*'}) by (pod)
+          sum(up{namespace='monitoring'}) by (pod)
