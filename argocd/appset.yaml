@@ -25,6 +25,9 @@ spec:
         targetRevision: 'env/{{path.basename}}'
         path: .
       syncPolicy:
-        automated: {}
+        automated:
+          prune: true
+          selfHeal: true
         syncOptions:
         - CreateNamespace=true
+        - ServerSideApply=true
