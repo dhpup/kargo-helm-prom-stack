@@ -3,5 +3,4 @@ kind: Project
 metadata:
   name: kargo-helm-prom-stack
   annotations:
-    # This annotation ensures Projects (Namespaces) are created first when deployed via Argo CD
-    argocd.argoproj.io/sync-wave: "-1"
+    argocd.argoproj.io/sync-wave: "1"

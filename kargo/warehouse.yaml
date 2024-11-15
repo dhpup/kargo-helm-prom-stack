@@ -3,6 +3,8 @@ kind: Warehouse
 metadata:
   name: kube-prometheus-stack
   namespace: kargo-helm
+    annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   freightCreationPolicy: Automatic
   interval: 5m0s
