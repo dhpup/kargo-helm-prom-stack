@@ -30,7 +30,7 @@ kube-prometheus-stack:
       image:
         registry: quay.io
         repository: prometheus/prometheus
-        tag: v2.55.1
+        tag: v2.54.1
     ingress:
       enabled: true
       hosts:
