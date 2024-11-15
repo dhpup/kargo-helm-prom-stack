@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: kargo-helm-prom-stack
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/34fathombelow/kargo-helm-prom-stack.git
+      revision: HEAD
+      directories:
+      - path: env/*
+  template:
+    metadata:
+      name: 'kube-prometheus-stack-{{path.basename}}'
+      annotations:
+        kargo.akuity.io/authorized-stage: 'kargo-helm-prom-stack:{{path.basename}}'
+    spec:
+      destination:
+        namespace: monitoring
+        name: '{{path.basename}}'
+      project: kargo-helm
+      source:
+        repoURL: https://github.com/34fathombelow/kargo-helm-prom-stack.git
+        targetRevision: 'env/{{path.basename}}'
+        path: .
+       

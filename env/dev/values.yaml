@@ -1,0 +1,31 @@
+kube-prometheus-stack:
+  alertmanager: 
+    ingress:
+      enabled: true
+      hosts:
+        - alertmanager-dev.localhost
+      paths:
+        - /
+  grafana:
+    adminPassword: admin
+    sidecar:
+      dashboards:
+        enabled: true
+        labelValue: ""
+    ingress:
+      enabled: true
+      hosts:
+        - grafana-dev.localhost
+      paths:
+        - /
+  prometheus:
+    ingress:
+      enabled: true
+      hosts:
+        - prometheus-dev.localhost
+      paths:
+        - /
+  prometheus-node-exporter:
+    prometheus:
+      monitor:
+        interval: 15s

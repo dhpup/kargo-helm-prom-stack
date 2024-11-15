@@ -1,0 +1,15 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Warehouse
+metadata:
+  name: kube-prometheus-stack
+  namespace: kargo-helm
+spec:
+  freightCreationPolicy: Automatic
+  interval: 5m0s
+  subscriptions:
+    - chart:
+        discoveryLimit: 50
+        name: kube-prometheus-stack
+        repoURL: https://prometheus-community.github.io/helm-charts
+        semverConstraint: ">=62.0.0"
+

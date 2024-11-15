@@ -1,0 +1,84 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Stage
+metadata:
+  name: dev
+  namespace: kargo-helm-prom-stack
+  annotations:
+    kargo.akuity.io/color: red
+spec:
+  requestedFreight:
+  - origin:
+      kind: Warehouse
+      name: kube-prometheus-stack
+    sources:
+      direct: true
+  promotionTemplate:
+    spec:
+      steps:
+      - uses: git-clone
+        config:
+          repoURL: https://github.com/34fathombelow/kargo-helm-prom-stack.git
+          checkout:
+          - branch: main
+            path: ./src
+          - branch: stage/dev
+            create: true
+            path: ./out
+      
+      - uses: git-clear
+        config:
+        path: ./out
+
+      - uses: helm-update-chart
+        as: update-chart
+        config:
+          path: ./src/charts/kube-prometheus-stack
+          charts:
+          - name: kube-prometheus-stack
+            repository: https://prometheus-community.github.io/helm-charts
+            fromOrigin:
+              kind: Warehouse
+              name: kube-prometheus-stack
+      
+      - uses: helm-template
+        as: helm-template
+        config:
+          path: ./src/charts/kube-prometheus-stack
+          releaseName: kube-prometheus-stack
+          includeCRDs: true
+          valueFiles:
+          - ./src/env/dev/values.yaml
+          outPath: ./out/manifests.yaml
+
+      # Commit the Chart changes to the Git repository.
+      - uses: git-commit
+        as: chart-update
+        config:
+          path: ./src
+          messageFromSteps:
+          - update-chart
+
+      # Commit helm-template changes to the Git repository.
+      - uses: git-commit
+        as: commit
+        config:
+          path: ./out
+          message: rendered updated manifests
+
+      # Push the Chart changes to the Git repository.
+      - uses: git-push
+        config:
+          path: ./src
+
+      # Push the helm-template to the Git repository.
+      - uses: git-push
+        config:
+          path: ./out
+
+      - uses: argocd-update
+        config:
+          apps:
+          - name: kube-prometheus-stack-dev
+            sources:
+            - repoURL: https://github.com/34fathombelow/kargo-helm-prom-stack.git
+              desiredCommitFromStep: commit
