@@ -69,13 +69,14 @@ spec:
           - ./src/env/dev/values.yaml
           outPath: ./out/manifests.yaml
 
-      # Commit the image & Chart changes to the Git repository.
+      # Commit image & Chart changes to the Git repository.
       - uses: git-commit
         as: image-update
         config:
           path: ./src
           messageFromSteps:
           - update-images
+          - update-chart
 
       # Commit helm-template changes to the Git repository.
       - uses: git-commit
@@ -84,7 +85,7 @@ spec:
           path: ./out
           message: rendered updated manifests
 
-      # Push the image & Chart changes to the Git repository.
+      # Push image & Chart changes to the Git repository.
       - uses: git-push
         config:
           path: ./src
@@ -153,6 +154,18 @@ spec:
               kind: Warehouse
               name: kube-prometheus-stack
 
+      - uses: helm-update-image
+        as: update-images
+        config:
+          path: ./src/env/prod/values.yaml
+          images:
+          - image: docker.io/grafana/grafana
+            key: kube-prometheus-stack.grafana.image.tag
+            value: Tag
+            fromOrigin:
+              kind: Warehouse
+              name: grafana
+
       - uses: helm-template
         as: helm-template
         config:
@@ -164,12 +177,13 @@ spec:
           - ./src/env/prod/values.yaml
           outPath: ./out/manifests.yaml
 
-      # Commit the Chart changes to the Git repository.
+      # Commit image & Chart changes to the Git repository.
       - uses: git-commit
         as: chart-update
         config:
           path: ./src
           messageFromSteps:
+          - update-images
           - update-chart
 
       # Commit helm-template changes to the Git repository.
@@ -179,7 +193,7 @@ spec:
           path: ./out
           message: rendered updated manifests
 
-      # Push the Chart changes to the Git repository.
+      # Push image & Chart changes to the Git repository.
       - uses: git-push
         config:
           path: ./src
