@@ -22,7 +22,7 @@ spec:
           checkout:
           - branch: main
             path: ./src
-          - branch: stage/dev
+          - branch: env/dev
             create: true
             path: ./out
 
