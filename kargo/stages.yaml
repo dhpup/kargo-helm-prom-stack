@@ -46,6 +46,7 @@ spec:
         config:
           path: ./src/charts/kube-prometheus-stack
           releaseName: kube-prometheus-stack
+          namespace: monitoring
           includeCRDs: true
           valuesFiles:
           - ./src/env/dev/values.yaml
