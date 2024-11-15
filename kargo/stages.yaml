@@ -74,12 +74,12 @@ spec:
             fromOrigin:
               kind: Warehouse
               name: alertmanager
-          #- image: quay.io/prometheus/prometheus
-          #  key: kube-prometheus-stack.prometheus.prometheusSpec.image.tag
-          #  value: Tag
-          #  fromOrigin:
-          #    kind: Warehouse
-          #    name: prometheus
+          - image: quay.io/prometheus/prometheus
+            key: kube-prometheus-stack.prometheus.prometheusSpec.image.tag
+            value: Tag
+            fromOrigin:
+              kind: Warehouse
+              name: prometheus
 
       - uses: helm-template
         as: helm-template
