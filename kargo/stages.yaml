@@ -46,6 +46,11 @@ spec:
         config:
           path: ./out
 
+      - uses: kustomize-build
+        config:
+          path: ./src/addons
+          outPath: .out/addons.yaml
+
       - uses: helm-update-chart
         as: update-chart
         config:
@@ -178,6 +183,11 @@ spec:
       - uses: git-clear
         config:
           path: ./out
+
+      - uses: kustomize-build
+        config:
+          path: ./src/addons
+          outPath: .out/addons.yaml
 
       - uses: helm-update-chart
         as: update-chart
