@@ -5,8 +5,8 @@ metadata:
   namespace: argocd
 spec:
   clusterResourceWhitelist:
-  - group: ""
-    kind: Namespace
+  - group: "*"
+    kind:  '*'
   destinations:
   - name: '*'
     namespace: '*'
@@ -15,4 +15,4 @@ spec:
   - group: '*'
     kind: '*'
   sourceRepos:
-  - https://github.com/34fathombelow/kargo-helm-prom-stack.git
+  - '*'
