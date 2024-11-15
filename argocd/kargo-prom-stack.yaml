@@ -10,5 +10,8 @@ spec:
   destination:
     name: kargo1
   syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
     syncOptions:
     - CreateNamespace=true
