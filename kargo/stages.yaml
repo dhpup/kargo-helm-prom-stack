@@ -25,7 +25,7 @@ spec:
           - branch: stage/dev
             create: true
             path: ./out
-      
+
       - uses: git-clear
         config:
         path: ./out
@@ -40,7 +40,7 @@ spec:
             fromOrigin:
               kind: Warehouse
               name: kube-prometheus-stack
-      
+
       - uses: helm-template
         as: helm-template
         config:
