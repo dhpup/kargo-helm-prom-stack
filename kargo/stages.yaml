@@ -46,6 +46,18 @@ spec:
               kind: Warehouse
               name: kube-prometheus-stack
 
+      - uses: helm-update-image
+        as: update-images
+        config:
+          path: ./src/env/dev/values.yaml
+          images:
+          - image: docker.io/grafana/grafana
+            key: kube-prometheus-stack.grafana.image.tag
+            value: Tag
+            fromOrigin:
+              kind: Warehouse
+              name: grafana
+
       - uses: helm-template
         as: helm-template
         config:
@@ -57,13 +69,13 @@ spec:
           - ./src/env/dev/values.yaml
           outPath: ./out/manifests.yaml
 
-    #  # Commit the Chart changes to the Git repository.
-    #  - uses: git-commit
-    #    as: chart-update
-    #    config:
-    #      path: ./src
-    #      messageFromSteps:
-    #      - update-chart
+      # Commit the Chart changes to the Git repository.
+      - uses: git-commit
+        as: image-update
+        config:
+          path: ./src
+          messageFromSteps:
+          - update-images
 
       # Commit helm-template changes to the Git repository.
       - uses: git-commit
@@ -72,10 +84,10 @@ spec:
           path: ./out
           message: rendered updated manifests
 
-    #  # Push the Chart changes to the Git repository.
-    #  - uses: git-push
-    #    config:
-    #      path: ./src
+      # Push the Chart changes to the Git repository.
+      - uses: git-push
+        config:
+          path: ./src
 
       # Push the helm-template to the Git repository.
       - uses: git-push
