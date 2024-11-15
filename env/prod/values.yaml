@@ -8,7 +8,7 @@ kube-prometheus-stack:
         - /
   grafana:
     image:
-      tag: 11.2.0
+      tag: 11.2.1
     adminPassword: admin
     sidecar:
       dashboards:
