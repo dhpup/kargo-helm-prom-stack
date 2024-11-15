@@ -9,7 +9,7 @@ spec:
     kind: Namespace
   destinations:
   - name: '*'
-    namespace: kargo-helm-*
+    namespace: '*'
     server: '*'
   namespaceResourceWhitelist:
   - group: '*'
