@@ -48,8 +48,8 @@ spec:
 
       - uses: kustomize-build
         config:
-          path: ./src/addons/kustomization.yaml
-          outPath: .out/addons.yaml
+          path: ./src/addons
+          outPath: ./out/addons.yaml
 
       - uses: helm-update-chart
         as: update-chart
@@ -186,8 +186,8 @@ spec:
 
       - uses: kustomize-build
         config:
-          path: ./src/addons/kustomization.yaml
-          outPath: .out/addons.yaml
+          path: ./src/addons
+          outPath: ./out/addons.yaml
 
       - uses: helm-update-chart
         as: update-chart
