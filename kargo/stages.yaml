@@ -28,7 +28,7 @@ spec:
 
       - uses: git-clear
         config:
-        path: ./out
+          path: ./out
 
       - uses: helm-update-chart
         as: update-chart
