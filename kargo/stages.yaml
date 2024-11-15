@@ -152,7 +152,7 @@ spec:
       - dev
   - origin:
       kind: Warehouse
-      name: alertmanger
+      name: alertmanager
     sources:
       stages:
       - dev
