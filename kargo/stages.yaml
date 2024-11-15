@@ -47,7 +47,7 @@ spec:
           path: ./src/charts/kube-prometheus-stack
           releaseName: kube-prometheus-stack
           includeCRDs: true
-          valueFiles:
+          valuesFiles:
           - ./src/env/dev/values.yaml
           outPath: ./out/manifests.yaml
 
