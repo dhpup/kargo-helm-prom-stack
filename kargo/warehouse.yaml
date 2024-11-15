@@ -10,7 +10,7 @@ spec:
   interval: 5m0s
   subscriptions:
     - chart:
-        discoveryLimit: 50
+        discoveryLimit: 20
         name: kube-prometheus-stack
         repoURL: https://prometheus-community.github.io/helm-charts
         semverConstraint: ">=62.0.0"
@@ -33,3 +33,37 @@ spec:
         imageSelectionStrategy: SemVer
         semverConstraint: ">=11.2.0"
         strictSemvers: true
+
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Warehouse
+metadata:
+  name: alertmanager
+  namespace: kargo-helm-prom-stack
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  subscriptions:
+  - image:
+      discoveryLimit: 20
+      repoURL: quay.io/prometheus/alertmanager
+      imageSelectionStrategy: SemVer
+      semverConstraint: ">=0.27.0"
+      strictSemvers: true
+
+---
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Warehouse
+metadata:
+  name: prometheus
+  namespace: kargo-helm-prom-stack
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  subscriptions:
+  - image:
+      discoveryLimit: 20
+      repoURL: quay.io/prometheus/prometheus
+      imageSelectionStrategy: SemVer
+      semverConstraint: ">=2.55.0"
+      strictSemvers: true

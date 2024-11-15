@@ -19,6 +19,16 @@ spec:
       name: grafana
     sources:
       direct: true
+  - origin:
+      kind: Warehouse
+      name: alertmanager
+    sources:
+      direct: true
+  - origin:
+      kind: Warehouse
+      name: prometheus
+    sources:
+      direct: true
   promotionTemplate:
     spec:
       steps:
@@ -58,6 +68,18 @@ spec:
             fromOrigin:
               kind: Warehouse
               name: grafana
+          - image: quay.io/prometheus/alertmanager
+            key: kube-prometheus-stack.alertmanager.alertmanagerSpec.image.tag
+            value: Tag
+            fromOrigin:
+              kind: Warehouse
+              name: alertmanager
+          - image: quay.io/prometheus/prometheus
+            key: kube-prometheus-stack.prometheus.prometheusSpec.image.tag
+            value: Tag
+            fromOrigin:
+              kind: Warehouse
+              name: prometheus
 
       - uses: helm-template
         as: helm-template
@@ -128,6 +150,18 @@ spec:
     sources:
       stages:
       - dev
+  - origin:
+      kind: Warehouse
+      name: alertmanger
+    sources:
+      stages:
+      - dev
+  - origin:
+      kind: Warehouse
+      name: prometheus
+    sources:
+      stages:
+      - dev
   promotionTemplate:
     spec:
       steps:
@@ -167,6 +201,18 @@ spec:
             fromOrigin:
               kind: Warehouse
               name: grafana
+          - image: quay.io/prometheus/alertmanager
+            key: kube-prometheus-stack.alertmanager.alertmanagerSpec.image.tag
+            value: Tag
+            fromOrigin:
+              kind: Warehouse
+              name: alertmanager
+          - image: quay.io/prometheus/prometheus
+            key: kube-prometheus-stack.prometheus.prometheusSpec.image.tag
+            value: Tag
+            fromOrigin:
+              kind: Warehouse
+              name: prometheus
 
       - uses: helm-template
         as: helm-template
