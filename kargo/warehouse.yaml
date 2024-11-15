@@ -65,5 +65,5 @@ spec:
       discoveryLimit: 20
       repoURL: quay.io/prometheus/prometheus
       imageSelectionStrategy: SemVer
-      semverConstraint: ">=2.55.0"
+      semverConstraint: ">=2.54.0"
       strictSemvers: true
