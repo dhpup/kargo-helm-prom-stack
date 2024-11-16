@@ -294,25 +294,25 @@ spec:
       name: kube-prometheus-stack
     sources:
       stages:
-      - dev
+      - test
   - origin:
       kind: Warehouse
       name: grafana
     sources:
       stages:
-      - dev
+      - test
   - origin:
       kind: Warehouse
       name: alertmanager
     sources:
       stages:
-      - dev
+      - test
   - origin:
       kind: Warehouse
       name: prometheus
     sources:
       stages:
-      - dev
+      - test
   promotionTemplate:
     spec:
       steps:
