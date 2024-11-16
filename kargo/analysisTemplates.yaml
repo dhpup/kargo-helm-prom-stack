@@ -8,7 +8,7 @@ spec:
   - name: prometheus-is-up
     interval: 30s
     count: 4
-    successCondition: result[0] > 0
+    successCondition: result[0] >= 1
     failureLimit: 3
     provider:
       prometheus:
@@ -16,4 +16,4 @@ spec:
         insecure: true
         timeout: 40
         query: |
-          kube_pod_status_phase{namespace='monitoring',phase!='Running',pod=~".*kube-prometheus-stack.*"}
+          sum(kube_pod_status_phase{namespace='monitoring',phase!='Running',pod=~".*kube-prometheus-stack.*"}) by (pod)
