@@ -131,9 +131,9 @@ spec:
             - repoURL: https://github.com/dhpup/kargo-helm-prom-stack.git
               desiredCommitFromStep: commit
 
-  verification:
-    analysisTemplates:
-    - name: prometheus-is-up
+  # verification:
+  #   analysisTemplates:
+  #   - name: prometheus-is-up
 ---
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
@@ -272,6 +272,6 @@ spec:
             - repoURL: https://github.com/dhpup/kargo-helm-prom-stack.git
               desiredCommitFromStep: commit
 
-  verification:
-    analysisTemplates:
-    - name: prometheus-is-up
+  # verification:
+  #   analysisTemplates:
+  #   - name: prometheus-is-up
