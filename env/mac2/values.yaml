@@ -1,4 +1,6 @@
 kube-prometheus-stack:
+  nodeExporter:
+    enabled: false
   alertmanager:
     alertmanagerSpec:
       image:

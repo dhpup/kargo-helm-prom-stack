@@ -1,10 +1,12 @@
 kube-prometheus-stack:
+  nodeExporter:
+    enabled: false
   alertmanager:
     alertmanagerSpec:
       image:
         tag: v0.25.1
     ingress:
-      enabled: false
+      enabled: true
       hosts:
         - alertmanager-dev.localhost
       paths:
@@ -18,7 +20,7 @@ kube-prometheus-stack:
         enabled: true
         labelValue: ""
     ingress:
-      enabled: false
+      enabled: true
       hosts:
         - grafana-dev.localhost
       paths:
@@ -28,7 +30,7 @@ kube-prometheus-stack:
       image:
         tag: v2.55.0
     ingress:
-      enabled: false
+      enabled: true
       hosts:
         - prometheus-dev.localhost
       paths:
