@@ -6,6 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
+  shard: kargo-agent
   freightCreationPolicy: Automatic
   interval: 5m0s
   subscriptions:
@@ -24,6 +25,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
+  shard: kargo-agent
   freightCreationPolicy: Automatic
   interval: 5m0s
   subscriptions:
@@ -43,6 +45,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
+  shard: kargo-agent
   subscriptions:
   - image:
       discoveryLimit: 20
@@ -60,6 +63,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
+  shard: kargo-agent
   subscriptions:
   - image:
       discoveryLimit: 20

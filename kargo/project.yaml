@@ -7,9 +7,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "1"
 spec:
   promotionPolicies:
-  - stage: dev
+  - stage: mac1
     autoPromotionEnabled: false
-  - stage: test
-    autoPromotionEnabled: false
-  - stage: prod
+  - stage: mac2
     autoPromotionEnabled: false
