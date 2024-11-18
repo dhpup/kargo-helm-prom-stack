@@ -3,9 +3,9 @@ kind: Application
 metadata:
   name: kargo-helm-prom-stack
 spec:
-  project: kargo-helm
+  project: kargo-helm-prom-stack
   source:
-    repoURL: https://github.com/34fathombelow/kargo-helm-prom-stack.git
+    repoURL: https://github.com/dhpup/kargo-helm-prom-stack.git
     path: kargo
   destination:
     name: kargo1
