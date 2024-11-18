@@ -50,7 +50,7 @@ spec:
       discoveryLimit: 20
       repoURL: quay.io/prometheus/alertmanager
       imageSelectionStrategy: SemVer
-      semverConstraint: ">=0.27.0"
+      semverConstraint: ">=0.25.0"
       strictSemvers: true
 
 ---
