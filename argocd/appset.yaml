@@ -7,7 +7,7 @@ spec:
   generators:
   - git:
       repoURL: https://github.com/dhpup/kargo-helm-prom-stack.git
-      revision: HEAD
+      revision: main
       files:
       - path: env/listelements.yaml
   - list:
