@@ -14,8 +14,7 @@ spec:
     metadata:
       name: 'kube-prometheus-stack-{{path.basename}}'
       annotations:
-        kargo.akuity.io/authorized-stage: 'kargo-helm-prom-stack:dev'
-        kargo.akuity.io/authorized-stage: 'kargo-helm-prom-stack:prod'
+        kargo.akuity.io/authorized-stage: 'kargo-helm-prom-stack:*'
     spec:
       destination:
         namespace: monitoring
