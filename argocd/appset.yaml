@@ -6,7 +6,7 @@ metadata:
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
-  -matrix:
+  - matrix:
       generators:
       - git:
           repoURL: https://github.com/dhpup/kargo-helm-prom-stack.git
