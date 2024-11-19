@@ -17,17 +17,17 @@ spec:
       elementsYaml: "{{ .key.components | toJson }}"
   template:
     metadata:
-      name: 'kube-prometheus-stack-{{.name}}'
+      name: "kube-prometheus-stack-{{.name}}"
       annotations:
-        kargo.akuity.io/authorized-stage: 'kargo-helm-prom-stack:{{.stage}}'
+        kargo.akuity.io/authorized-stage: "kargo-helm-prom-stack:{{.stage}}"
     spec:
       destination:
         namespace: monitoring
-        name: '{{.name}}'
+        name: "{{.name}}"
       project: kargo-helm-prom-stack
       source:
         repoURL: https://github.com/dhpup/kargo-helm-prom-stack.git
-        targetRevision: 'env/{{.name}}'
+        targetRevision: "env/{{.name}}"
         path: .
       syncPolicy:
         automated:
