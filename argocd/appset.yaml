@@ -4,7 +4,6 @@ metadata:
   name: kargo-helm-prom-stack
   namespace: argocd
 spec:
-spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
