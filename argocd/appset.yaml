@@ -9,7 +9,7 @@ spec:
       repoURL: https://github.com/dhpup/kargo-helm-prom-stack.git
       revision: main
       files:
-      - path: "config/listelements.yaml"ß
+      - path: "config/listelements.yaml"
   - list:
       elementsYaml: "{{ .key.components | toJson }}"
   template:
