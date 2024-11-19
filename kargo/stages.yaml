@@ -151,25 +151,25 @@ spec:
       name: kube-prometheus-stack
     sources:
       stages:
-      - mac2
+      - dev
   - origin:
       kind: Warehouse
       name: grafana
     sources:
       stages:
-      - mac2
+      - dev
   - origin:
       kind: Warehouse
       name: alertmanager
     sources:
       stages:
-      - mac2
+      - dev
   - origin:
       kind: Warehouse
       name: prometheus
     sources:
       stages:
-      - mac2
+      - dev
   promotionTemplate:
     spec:
       steps:
