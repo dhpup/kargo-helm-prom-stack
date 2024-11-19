@@ -1,0 +1,6 @@
+key:
+  components:
+    - name: mac2
+      stage: dev
+    - name: mac3
+      stage: prod

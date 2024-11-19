@@ -9,20 +9,22 @@ spec:
       repoURL: https://github.com/dhpup/kargo-helm-prom-stack.git
       revision: HEAD
       directories:
-      - path: env/*
+      - path: env/listelements.yaml
+  - list:
+      elementsYaml: "{{ .key.components | toJson }}"
   template:
     metadata:
-      name: 'kube-prometheus-stack-{{path.basename}}'
+      name: 'kube-prometheus-stack-{{.name}}'
       annotations:
-        kargo.akuity.io/authorized-stage: 'kargo-helm-prom-stack:*'
+        kargo.akuity.io/authorized-stage: 'kargo-helm-prom-stack:{{.stage}}'
     spec:
       destination:
         namespace: monitoring
-        name: '{{path.basename}}'
+        name: '{{.name}}'
       project: kargo-helm-prom-stack
       source:
         repoURL: https://github.com/dhpup/kargo-helm-prom-stack.git
-        targetRevision: 'env/{{path.basename}}'
+        targetRevision: 'env/{{.name}}'
         path: .
       syncPolicy:
         automated:
