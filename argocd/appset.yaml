@@ -6,15 +6,16 @@ metadata:
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
-  generators:
-  - git:
-      repoURL: https://github.com/dhpup/kargo-helm-prom-stack.git
-      revision: main
-      files:
-      - path: "config/listelements.yaml"
-  - list:
-      # elements: []
-      elementsYaml: "{{ .key.components | toJson }}"
+  -matrix:
+      generators:
+      - git:
+          repoURL: https://github.com/dhpup/kargo-helm-prom-stack.git
+          revision: main
+          files:
+          - path: "config/listelements.yaml"
+      - list:
+          # elements: []
+          elementsYaml: "{{ .key.components | toJson }}"
   template:
     metadata:
       name: "kube-prometheus-stack-{{.name}}"
