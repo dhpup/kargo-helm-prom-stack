@@ -11,6 +11,7 @@ spec:
       files:
       - path: "config/listelements.yaml"
   - list:
+      elements: []
       elementsYaml: "{{ .key.components | toJson }}"
   template:
     metadata:
