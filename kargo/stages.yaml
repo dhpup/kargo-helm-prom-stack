@@ -54,7 +54,7 @@ spec:
       - uses: helm-update-chart
         as: update-chart
         config:
-          path: ./src/charts/kube-prometheus-stack
+          path: ./src/kube-prometheus-stack/env/dev
           charts:
           - name: kube-prometheus-stack
             repository: https://prometheus-community.github.io/helm-charts
@@ -65,7 +65,7 @@ spec:
       - uses: helm-update-image
         as: update-images
         config:
-          path: ./src/env/dev/values.yaml
+          path: ./src/kube-prometheus-stack/env/dev/values.yaml
           images:
           - image: docker.io/grafana/grafana
             key: kube-prometheus-stack.grafana.image.tag
@@ -89,12 +89,12 @@ spec:
       - uses: helm-template
         as: helm-template
         config:
-          path: ./src/charts/kube-prometheus-stack
+          path: ./src/kube-prometheus-stack/env/dev
           releaseName: kube-prometheus-stack
           namespace: monitoring
           includeCRDs: true
           valuesFiles:
-          - ./src/env/dev/values.yaml
+          - ./src/kube-prometheus-stack/env/dev/values.yaml
           outPath: ./out/manifests.yaml
 
       # Commit image & Chart changes to the Git repository.
@@ -196,7 +196,7 @@ spec:
       - uses: helm-update-chart
         as: update-chart
         config:
-          path: ./src/charts/kube-prometheus-stack
+          path: ./src/kube-prometheus-stack/env/test
           charts:
           - name: kube-prometheus-stack
             repository: https://prometheus-community.github.io/helm-charts
@@ -207,7 +207,7 @@ spec:
       - uses: helm-update-image
         as: update-images
         config:
-          path: ./src/env/test/values.yaml
+          path: ./src/kube-prometheus-stack/env/test/values.yaml
           images:
           - image: docker.io/grafana/grafana
             key: kube-prometheus-stack.grafana.image.tag
@@ -231,12 +231,12 @@ spec:
       - uses: helm-template
         as: helm-template
         config:
-          path: ./src/charts/kube-prometheus-stack
+          path: ./src/kube-prometheus-stack/env/test
           releaseName: kube-prometheus-stack
           namespace: monitoring
           includeCRDs: true
           valuesFiles:
-          - ./src/env/test/values.yaml
+          - ./src/kube-prometheus-stack/env/test/values.yaml
           outPath: ./out/manifests.yaml
 
       # Commit image & Chart changes to the Git repository.
@@ -338,7 +338,7 @@ spec:
       - uses: helm-update-chart
         as: update-chart
         config:
-          path: ./src/charts/kube-prometheus-stack
+          path: ./src/kube-prometheus-stack/env/prod
           charts:
           - name: kube-prometheus-stack
             repository: https://prometheus-community.github.io/helm-charts
@@ -349,7 +349,7 @@ spec:
       - uses: helm-update-image
         as: update-images
         config:
-          path: ./src/env/prod/values.yaml
+          path: ./src/kube-prometheus-stack/env/prod/values.yaml
           images:
           - image: docker.io/grafana/grafana
             key: kube-prometheus-stack.grafana.image.tag
@@ -373,12 +373,12 @@ spec:
       - uses: helm-template
         as: helm-template
         config:
-          path: ./src/charts/kube-prometheus-stack
+          path: ./src/kube-prometheus-stack/env/prod
           releaseName: kube-prometheus-stack
           namespace: monitoring
           includeCRDs: true
           valuesFiles:
-          - ./src/env/prod/values.yaml
+          - ./src/kube-prometheus-stack/env/prod/values.yaml
           outPath: ./out/manifests.yaml
 
       # Commit image & Chart changes to the Git repository.
