@@ -102,6 +102,7 @@ spec:
         as: image-update
         config:
           path: ./src
+          message: just a test message
           messageFromSteps:
           - update-images
           - update-chart
