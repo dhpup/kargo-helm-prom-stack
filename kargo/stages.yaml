@@ -102,10 +102,9 @@ spec:
         as: image-update
         config:
           path: ./src
-          message: just a test message
           messageFromSteps:
-          - update-images
           - update-chart
+          - update-images
 
       # Commit helm-template changes to the Git repository.
       - uses: git-commit
