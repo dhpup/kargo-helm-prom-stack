@@ -87,7 +87,6 @@ spec:
               name: prometheus
 
       - uses: helm-template
-        as: helm-template
         config:
           path: ./src/kube-prometheus-stack/env/dev
           releaseName: kube-prometheus-stack
@@ -229,7 +228,6 @@ spec:
               name: prometheus
 
       - uses: helm-template
-        as: helm-template
         config:
           path: ./src/kube-prometheus-stack/env/test
           releaseName: kube-prometheus-stack
@@ -245,8 +243,8 @@ spec:
         config:
           path: ./src
           messageFromSteps:
-          - update-images
           - update-chart
+          - update-images
 
       # Commit helm-template changes to the Git repository.
       - uses: git-commit
@@ -371,7 +369,6 @@ spec:
               name: prometheus
 
       - uses: helm-template
-        as: helm-template
         config:
           path: ./src/kube-prometheus-stack/env/prod
           releaseName: kube-prometheus-stack
@@ -387,8 +384,8 @@ spec:
         config:
           path: ./src
           messageFromSteps:
-          - update-images
           - update-chart
+          - update-images
 
       # Commit helm-template changes to the Git repository.
       - uses: git-commit
