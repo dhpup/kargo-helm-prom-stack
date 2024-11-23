@@ -54,7 +54,7 @@ spec:
       - uses: helm-update-chart
         as: update-chart
         config:
-          path: ./src/charts/kube-prometheus-stack
+          path: ./src/env/mac2
           charts:
           - name: kube-prometheus-stack
             repository: https://prometheus-community.github.io/helm-charts
@@ -89,7 +89,7 @@ spec:
       - uses: helm-template
         as: helm-template
         config:
-          path: ./src/charts/kube-prometheus-stack
+          path: ./src/env/mac2
           releaseName: kube-prometheus-stack
           namespace: monitoring
           includeCRDs: true
@@ -195,7 +195,7 @@ spec:
       - uses: helm-update-chart
         as: update-chart
         config:
-          path: ./src/charts/kube-prometheus-stack
+          path: ./src/env/mac3
           charts:
           - name: kube-prometheus-stack
             repository: https://prometheus-community.github.io/helm-charts
@@ -230,7 +230,7 @@ spec:
       - uses: helm-template
         as: helm-template
         config:
-          path: ./src/charts/kube-prometheus-stack
+          path: ./src/env/mac3
           releaseName: kube-prometheus-stack
           namespace: monitoring
           includeCRDs: true
