@@ -8,8 +8,8 @@ metadata:
 spec:
   promotionPolicies:
   - stage: dev
-    autoPromotionEnabled: false
+    autoPromotionEnabled: true
   - stage: test
-    autoPromotionEnabled: false
+    autoPromotionEnabled: true
   - stage: prod
     autoPromotionEnabled: false
