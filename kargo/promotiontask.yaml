@@ -5,7 +5,7 @@ metadata:
   namespace: kargo-helm-prom-stack
 spec:
   vars:
-  - name: repoURL
+  - name: gitRepo
   - name: chartName
   - name: chartRepo
   - name: helmSrc
