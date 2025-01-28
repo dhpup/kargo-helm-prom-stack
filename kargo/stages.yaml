@@ -54,7 +54,7 @@ spec:
           - name: ${{ vars.chartName }}-${{ ctx.stage }}
             sources:
             - repoURL: ${{ vars.gitRepo }}
-              desiredRevision: ${{ outputs.commit.commit }}
+              desiredRevision: ${{ task.outputs.commit.commit }}
 
   verification:
     analysisTemplates:
