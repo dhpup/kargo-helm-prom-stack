@@ -77,3 +77,7 @@ spec:
   - uses: git-push
     config:
       path: ./out
+  - uses: compose-output
+    as: output
+    config:
+      commit: ${{ task.outputs.commit.commit }}
