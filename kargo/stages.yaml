@@ -45,6 +45,7 @@ spec:
       steps:
       - task:
           name: default-promote
+        as: promotion
       # Update Argo CD application
       - uses: argocd-update
         retry:
@@ -54,7 +55,7 @@ spec:
           - name: ${{ vars.chartName }}-${{ ctx.stage }}
             sources:
             - repoURL: ${{ vars.gitRepo }}
-              desiredRevision: ${{ task.outputs.commit.commit }}
+              desiredRevision: ${{ outputs.promotion.commit }}
 
   verification:
     analysisTemplates:
