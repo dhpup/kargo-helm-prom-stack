@@ -1,0 +1,79 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: PromotionTask
+metadata:
+  name: default-promote
+  namespace: kargo-helm-prom-stack
+spec:
+  vars:
+  - name: repoURL
+  - name: chartName
+  - name: chartRepo
+  - name: helmSrc
+  - name: targetBranch
+  steps:
+  - uses: git-clone
+    config:
+      repoURL: ${{ vars.gitRepo }}
+      checkout:
+      - branch: main
+        path: ./src
+      - branch: ${{ vars.targetBranch }}
+        create: true
+        path: ./out
+  - uses: git-clear
+    config:
+      path: ./out
+  - uses: kustomize-build
+    config:
+      path: ./src/addons
+      outPath: ./out/addons.yaml
+  - uses: helm-update-chart
+    as: update-chart
+    config:
+      path: ${{ vars.helmSrc }}
+      charts:
+      - name: ${{ vars.chartName }}
+        repository: ${{ vars.chartRepo }}
+        version: ${{ chartFrom(vars.chartRepo, vars.chartName, warehouse(vars.chartName)).Version }}
+  - uses: yaml-update
+    as: update-images
+    config:
+      path: ${{ vars.helmSrc }}/values.yaml
+      updates:
+      - key: ${{ vars.chartName }}.grafana.image.tag
+        value: ${{ imageFrom("docker.io/grafana/grafana", warehouse("grafana")).Tag }}
+      - key: ${{ vars.chartName }}.alertmanager.alertmanagerSpec.image.tag
+        value: ${{ imageFrom("quay.io/prometheus/alertmanager", warehouse("alertmanager")).Tag }}
+      - key: ${{ vars.chartName }}.prometheus.prometheusSpec.image.tag
+        value: ${{ imageFrom("quay.io/prometheus/prometheus", warehouse("prometheus")).Tag }}
+  - uses: helm-template
+    config:
+      path: ${{ vars.helmSrc }}
+      releaseName: ${{ vars.chartName }}
+      namespace: monitoring
+      includeCRDs: true
+      valuesFiles:
+      - ${{ vars.helmSrc }}/values.yaml
+      outPath: ./out/manifests.yaml
+  # Commit image & Chart changes to the Git repository.
+  - uses: git-commit
+    as: image-update
+    config:
+      path: ./src
+      messageFromSteps:
+      - update-chart
+      - update-images
+  # Commit helm-template changes to the Git repository.
+  - uses: git-commit
+    as: commit
+    config:
+      path: ./out
+      message: rendered updated manifests
+  # Push image & Chart changes to the Git repository.
+  - uses: git-push
+    config:
+      path: ./src
+  # Push the helm-template to the Git repository.
+  - uses: git-push
+    config:
+      path: ./out
