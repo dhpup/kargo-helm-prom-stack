@@ -48,8 +48,8 @@ spec:
         as: promotion
       # Update Argo CD application
       - uses: argocd-update
-        retry:
-          errorThreshold: 5
+       # retry:
+       #   errorThreshold: 5
         config:
           apps:
           - name: ${{ vars.chartName }}-${{ ctx.stage }}
@@ -116,8 +116,8 @@ spec:
         as: promotion
       # Update Argo CD application
       - uses: argocd-update
-        retry:
-          errorThreshold: 5
+      #  retry:
+      #    errorThreshold: 5
         config:
           apps:
           - name: ${{ vars.chartName }}-${{ ctx.stage }}
