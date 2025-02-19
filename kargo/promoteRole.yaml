@@ -23,6 +23,8 @@ subjects:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
+  annotations:
+    rbac.kargo.akuity.io/managed: "true"
   name: kargo-promote-non-prod
   namespace: kargo-helm-prom-stack
 rules:
