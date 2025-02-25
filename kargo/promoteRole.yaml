@@ -27,6 +27,22 @@ metadata:
   namespace: kargo-helm-prom-stack
 rules:
 - apiGroups:
+  - kargo.akuity.io
+  resourceNames:
+  - kargo-helm-prom-stack
+  resources:
+  - clusterpromotiontasks
+  - freights
+  - projects
+  - promotions
+  - promotiontasks
+  - stages
+  - warehouses
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
   - argoproj.io
   resources:
   - analysisruns
