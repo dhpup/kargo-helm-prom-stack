@@ -52,7 +52,7 @@ spec:
        #   errorThreshold: 5
         config:
           apps:
-          - name: ${{ vars.chartName }}-${{ ctx.stage }}
+          - name: helm-guestbook/helm-guestbook
             sources:
             - repoURL: ${{ vars.gitRepo }}
               desiredRevision: ${{ outputs.promotion.commit }}
