@@ -26,7 +26,7 @@ kube-prometheus-stack:
   prometheus:
     prometheusSpec:
       image:
-        tag: v3.2.1
+        tag: v3.3.0
     ingress:
       enabled: true
       hosts:
