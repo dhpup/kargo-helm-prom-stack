@@ -11,7 +11,7 @@ kube-prometheus-stack:
         - /
   grafana:
     image:
-      tag: 12.0.1
+      tag: 12.0.2
     adminPassword: admin
     sidecar:
       dashboards:
