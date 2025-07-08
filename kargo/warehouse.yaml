@@ -10,10 +10,10 @@ spec:
   interval: 5m0s
   subscriptions:
     - chart:
-        discoveryLimit: 20
+        discoveryLimit: 10
         name: kube-prometheus-stack
         repoURL: https://prometheus-community.github.io/helm-charts
-        semverConstraint: ">=62.0.0"
+        semverConstraint: ">=75.0.0"
 
 ---
 apiVersion: kargo.akuity.io/v1alpha1
@@ -28,10 +28,10 @@ spec:
   interval: 5m0s
   subscriptions:
     - image:
-        discoveryLimit: 20
+        discoveryLimit: 10
         repoURL: docker.io/grafana/grafana
         imageSelectionStrategy: SemVer
-        semverConstraint: ">=11.2.0"
+        semverConstraint: ">=12.0.0"
         strictSemvers: true
 
 ---
@@ -47,10 +47,10 @@ spec:
   interval: 5m0s
   subscriptions:
   - image:
-      discoveryLimit: 20
+      discoveryLimit: 10
       repoURL: quay.io/prometheus/alertmanager
       imageSelectionStrategy: SemVer
-      semverConstraint: ">=0.25.0"
+      semverConstraint: ">=0.28.0"
       strictSemvers: true
 
 ---
@@ -66,8 +66,8 @@ spec:
   interval: 5m0s
   subscriptions:
   - image:
-      discoveryLimit: 20
+      discoveryLimit: 10
       repoURL: quay.io/prometheus/prometheus
       imageSelectionStrategy: SemVer
-      semverConstraint: ">=2.54.0"
+      semverConstraint: ">=3.4.0"
       strictSemvers: true
