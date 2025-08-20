@@ -17,6 +17,16 @@ kube-prometheus-stack:
       dashboards:
         enabled: true
         labelValue: ""
+    additionalDataSources:
+     - name: prometheus-local
+       type: prometheus
+       uid: prometheus-local
+       url: http://host.docker.internal:9090
+       access: proxy
+       isDefault: false
+       jsonData:
+         httpMethod: POST
+         timeInterval: 15s  
     ingress:
       enabled: true
       hosts:
