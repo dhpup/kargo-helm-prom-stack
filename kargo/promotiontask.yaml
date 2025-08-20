@@ -60,7 +60,7 @@ spec:
     as: image-update
     config:
       path: ./src
-      message: ${{ outputs['update-images'].commitMessage }}
+      message: ${{ outputs['update-images'].commitMessage || outputs['update-chart'].commitMessage }}
   # Commit helm-template changes to the Git repository.
   - uses: git-commit
     as: commit
