@@ -60,9 +60,9 @@ spec:
     as: image-update
     config:
       path: ./src
-      message: "Kargo updated an image or chart"
-        #${{ outputs['update-images'].commitMessage }}
-        #${{ outputs['update-chart'].commitMessage }}
+      message: |
+        ${{ task.outputs['update-images'].commitMessage }}
+        ${{ task.outputs['update-chart'].commitMessage }}
   # Commit helm-template changes to the Git repository.
   - uses: git-commit
     as: commit
