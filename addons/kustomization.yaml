@@ -12,13 +12,6 @@ configMapGenerator:
       disableNameSuffixHash: true
       labels:
         grafana_dashboard: akuity-dashboard
-  - name: argocd-ts-dashboard
-    files:
-    - argocd-ts-dashboard.json
-    options:
-      disableNameSuffixHash: true
-      labels:
-        grafana_dashboard: argocd-ts-dashboard
 
 patches:
 - patch: |
