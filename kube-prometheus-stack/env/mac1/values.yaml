@@ -2,7 +2,7 @@ kube-prometheus-stack:
   alertmanager:
     alertmanagerSpec:
       image:
-        tag: v0.28.1
+        tag: v0.25.1
     ingress:
       enabled: true
       hosts:
@@ -11,7 +11,7 @@ kube-prometheus-stack:
         - /
   grafana:
     image:
-      tag: 12.2.1
+      tag: 11.3.0
     adminPassword: admin
     sidecar:
       dashboards:
@@ -36,7 +36,7 @@ kube-prometheus-stack:
   prometheus:
     prometheusSpec:
       image:
-        tag: v3.7.2
+        tag: v2.55.0
     ingress:
       enabled: true
       hosts:
