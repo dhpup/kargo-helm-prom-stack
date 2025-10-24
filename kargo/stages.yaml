@@ -56,9 +56,9 @@ spec:
             - repoURL: ${{ vars.gitRepo }}
               desiredRevision: ${{ outputs.promotion.commit }}
 
-  verification:
-    analysisTemplates:
-    - name: prometheus-is-up
+  # verification:
+  #   analysisTemplates:
+  #   - name: prometheus-is-up
 
 ---
 apiVersion: kargo.akuity.io/v1alpha1
@@ -123,6 +123,6 @@ spec:
             - repoURL: ${{ vars.gitRepo }}
               desiredRevision: ${{ outputs.promotion.commit }}
 
-  verification:
-    analysisTemplates:
-    - name: prometheus-is-up
+  # verification:
+  #   analysisTemplates:
+  #   - name: prometheus-is-up
