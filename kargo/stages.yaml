@@ -1,13 +1,13 @@
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
 metadata:
-  name: dev
+  name: mac1
   namespace: kargo-helm-prom-stack
   annotations:
     kargo.akuity.io/color: red
     argocd.argoproj.io/sync-wave: "2"
 spec:
-  shard: dev
+  shard: mac1
   requestedFreight:
   - origin:
       kind: Warehouse
@@ -65,106 +65,38 @@ spec:
 apiVersion: kargo.akuity.io/v1alpha1
 kind: Stage
 metadata:
-  name: test
-  namespace: kargo-helm-prom-stack
-  annotations:
-    kargo.akuity.io/color: orange
-    argocd.argoproj.io/sync-wave: "2"
-spec:
-  shard: test
-  requestedFreight:
-  - origin:
-      kind: Warehouse
-      name: kube-prometheus-stack
-    sources:
-      stages:
-      - dev
-  - origin:
-      kind: Warehouse
-      name: grafana
-    sources:
-      stages:
-      - dev
-  - origin:
-      kind: Warehouse
-      name: alertmanager
-    sources:
-      stages:
-      - dev
-  - origin:
-      kind: Warehouse
-      name: prometheus
-    sources:
-      stages:
-      - dev
-  promotionTemplate:
-    spec:
-      vars:
-      - name: gitRepo
-        value: https://github.com/dhpup/kargo-helm-prom-stack.git
-      - name: chartName
-        value: kube-prometheus-stack
-      - name: chartRepo
-        value: https://prometheus-community.github.io/helm-charts
-      - name: helmSrc
-        value: ./src/kube-prometheus-stack/env/${{ ctx.stage }}
-      - name: targetBranch
-        value: env/${{ ctx.stage }}
-      steps:
-      - task:
-          name: default-promote
-        as: promotion
-      # Update Argo CD application
-      - uses: argocd-update
-      #  retry:
-      #    errorThreshold: 5
-        config:
-          apps:
-          - name: ${{ vars.chartName }}-${{ ctx.stage }}
-            sources:
-            - repoURL: ${{ vars.gitRepo }}
-              desiredRevision: ${{ outputs.promotion.commit }}
-
-  verification:
-    analysisTemplates:
-    - name: prometheus-is-up
-
----
-apiVersion: kargo.akuity.io/v1alpha1
-kind: Stage
-metadata:
-  name: prod
+  name: mac2
   namespace: kargo-helm-prom-stack
   annotations:
     kargo.akuity.io/color: green
     argocd.argoproj.io/sync-wave: "2"
 spec:
-  shard: prod
+  shard: mac2
   requestedFreight:
   - origin:
       kind: Warehouse
       name: kube-prometheus-stack
     sources:
       stages:
-      - test
+      - mac1
   - origin:
       kind: Warehouse
       name: grafana
     sources:
       stages:
-      - test
+      - mac1
   - origin:
       kind: Warehouse
       name: alertmanager
     sources:
       stages:
-      - test
+      - mac1
   - origin:
       kind: Warehouse
       name: prometheus
     sources:
       stages:
-      - test
+      - mac1
   promotionTemplate:
     spec:
       vars:
