@@ -7,7 +7,6 @@ metadata:
     kargo.akuity.io/color: red
     argocd.argoproj.io/sync-wave: "2"
 spec:
-  shard: mac1
   requestedFreight:
   - origin:
       kind: Warehouse
@@ -71,7 +70,6 @@ metadata:
     kargo.akuity.io/color: green
     argocd.argoproj.io/sync-wave: "2"
 spec:
-  shard: mac2
   requestedFreight:
   - origin:
       kind: Warehouse
