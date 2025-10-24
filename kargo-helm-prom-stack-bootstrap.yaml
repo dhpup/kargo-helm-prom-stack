@@ -3,7 +3,7 @@ kind: Application
 metadata:
   name: kargo-helm-prom-stack-bootstrap
 spec:
-  project: default
+  project: kargo-helm-prom-stack
   syncPolicy:
     automated: {}
   source:
