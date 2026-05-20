@@ -21,9 +21,13 @@ Warehouses ──► mac1 (auto-promote) ──► mac2 (auto-promote) ──►
 ```
 kargo-helm-prom-stack/
 ├── kargo-addons-bootstrap.yaml            # Bootstrap ArgoCD Application
+├── generate-apps.sh                       # Script to regenerate argocd/ app manifests
+├── .github/workflows/
+│   └── generate-apps.yaml                 # CI workflow to auto-regenerate app manifests
 ├── appsets/
 │   └── kube-prometheus-stack.yaml         # ApplicationSet — one app per environment
 ├── argocd/
+│   ├── appproj.yaml                       # ArgoCD AppProject
 │   ├── kargo-resources-app.yaml           # ArgoCD app for Kargo resources
 │   └── kube-prometheus-stack.yaml         # Static ArgoCD apps for mac1/mac2
 ├── kargo-resources/
