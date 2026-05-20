@@ -1,33 +1,27 @@
-# Generated with: ./generate-apps.sh
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: kargo-helm-prom-stack
   namespace: argocd
 spec:
-  syncPolicy:
-    preserveResourcesOnDeletion: true
-    applicationsSync: create-update
   generators:
   - git:
-      repoURL: https://github.com/34fathombelow/kargo-helm-prom-stack.git
+      repoURL: https://github.com/dhpup/kargo-helm-prom-stack.git
       revision: HEAD
       directories:
       - path: addons/kube-prometheus-stack/env/*
   template:
     metadata:
       name: 'kube-prometheus-stack-{{path.basename}}'
-      labels:
-        appset: auto-generated
       annotations:
         kargo.akuity.io/authorized-stage: 'kargo-helm-prom-stack:{{path.basename}}'
     spec:
       destination:
         namespace: monitoring
         name: '{{path.basename}}'
-      project: kargo-addons
+      project: kargo-helm-prom-stack
       source:
-        repoURL: https://github.com/34fathombelow/kargo-helm-prom-stack.git
+        repoURL: https://github.com/dhpup/kargo-helm-prom-stack.git
         targetRevision: 'env/{{path.basename}}'
         path: .
       syncPolicy:

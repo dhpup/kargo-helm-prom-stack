@@ -25,7 +25,7 @@ spec:
       path: ./out
   - uses: kustomize-build
     config:
-      path: ./src/addons/${{ vars.chartName }}/extras
+      path: ./src/addons
       outPath: ./out/addons.yaml
   - uses: helm-update-chart
     as: update-chart
@@ -41,11 +41,11 @@ spec:
       path: ${{ vars.helmSrc }}/values.yaml
       updates:
       - key: ${{ vars.chartName }}.grafana.image.tag
-        value: ${{ imageFrom("docker.io/grafana/grafana", warehouse("non-operator-images")).Tag }}
+        value: ${{ imageFrom("docker.io/grafana/grafana", warehouse("grafana")).Tag }}
       - key: ${{ vars.chartName }}.alertmanager.alertmanagerSpec.image.tag
-        value: ${{ imageFrom("quay.io/prometheus/alertmanager", warehouse("non-operator-images")).Tag }}
+        value: ${{ imageFrom("quay.io/prometheus/alertmanager", warehouse("alertmanager")).Tag }}
       - key: ${{ vars.chartName }}.prometheus.prometheusSpec.image.tag
-        value: ${{ imageFrom("quay.io/prometheus/prometheus", warehouse("non-operator-images")).Tag }}
+        value: ${{ imageFrom("quay.io/prometheus/prometheus", warehouse("prometheus")).Tag }}
   - uses: helm-template
     config:
       path: ${{ vars.helmSrc }}
